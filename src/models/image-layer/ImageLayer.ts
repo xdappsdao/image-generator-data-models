@@ -1,6 +1,6 @@
-import LayerOption, { LayerOptionFactory } from "../layer-option/LayerOption";
+import { LayerOption, LayerOptionFactory } from "../layer-option/LayerOption";
 
-class ImageLayer {
+export class ImageLayer {
   name = '';
   index = 0;
   listOfOptions: LayerOption[] = [];
@@ -22,7 +22,6 @@ class ImageLayer {
   }
 }
 
-export default ImageLayer;
 
 export class ImageLayerFactory {
   static fromJSON(data: Record<string, unknown>): ImageLayer {

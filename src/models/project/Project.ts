@@ -1,6 +1,6 @@
-import ImageLayer, { ImageLayerFactory } from "../image-layer/ImageLayer";
+import { ImageLayer, ImageLayerFactory } from "../image-layer/ImageLayer";
 
-class Project {
+export class Project {
   name = '';
   listOfLayers: ImageLayer[] = [];
   numberOfLayers = 0;
@@ -17,7 +17,6 @@ class Project {
     return listOfLayers;
   }
 }
-export default Project;
 
 
 export class ProjectFactory {

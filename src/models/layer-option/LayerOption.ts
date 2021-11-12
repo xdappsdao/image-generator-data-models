@@ -1,6 +1,6 @@
 
 
-class LayerOption {
+export class LayerOption {
   name = '';
   index = 0;
   imagePath = '';
@@ -15,8 +15,6 @@ class LayerOption {
   exactSupply = 0;
   specialRequirements = false;
 }
-
-export default LayerOption;
 
 export class LayerOptionFactory {
   static fromJSON(data: Record<string, unknown>): LayerOption {
