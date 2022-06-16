@@ -4,7 +4,6 @@ export class Project {
   name = '';
   listOfLayers: ImageLayer[] = [];
   numberOfLayers = 0;
-  requireUnique = false;
   totalSupply = 0;
   uid = '';
   admin = "";
@@ -38,7 +37,6 @@ export class ProjectFactory {
     itemToReturn.uid = data.uid;
     itemToReturn.totalSupply = data.totalSupply;
     itemToReturn.numberOfLayers = data.numberOfLayers;
-    itemToReturn.requireUnique = data.requireUnique;
     itemToReturn.admin = data.admin;
     itemToReturn.listOfLayers = itemToReturn.convertJSONToLayerObjects(data.listOfLayers);
     return itemToReturn;
