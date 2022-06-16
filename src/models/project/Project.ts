@@ -7,6 +7,7 @@ export class Project {
   requireUnique = false;
   totalSupply = 0;
   uid = '';
+  admin = "";
   convertJSONToLayerObjects(listOfJSONObjects: Record<string, unknown>[]): ImageLayer[] {
     const listOfLayers: ImageLayer[] = [];
     for (let i = 0; i < listOfJSONObjects.length; i++) {
@@ -38,6 +39,7 @@ export class ProjectFactory {
     itemToReturn.totalSupply = data.totalSupply;
     itemToReturn.numberOfLayers = data.numberOfLayers;
     itemToReturn.requireUnique = data.requireUnique;
+    itemToReturn.admin = data.admin;
     itemToReturn.listOfLayers = itemToReturn.convertJSONToLayerObjects(data.listOfLayers);
     return itemToReturn;
   }

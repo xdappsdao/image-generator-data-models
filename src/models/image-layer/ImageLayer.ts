@@ -4,9 +4,11 @@ export class ImageLayer {
   name = '';
   index = 0;
   listOfOptions: LayerOption[] = [];
-  constructor(name: string, index: number) {
+  projectUid: string;
+  constructor(name: string, index: number, projectUid: string) {
     this.name = name;
     this.index = index;
+    this.projectUid = projectUid;
   }
 
   convertJSONToLayerOptions(listOfJSONObjects: Record<string, unknown>[]): LayerOption[] {
@@ -17,18 +19,20 @@ export class ImageLayer {
         const layerOption = LayerOptionFactory.fromJSON(layerObject);
         listOfLayerOptions.push(layerOption);
       }
+      this.listOfOptions = listOfLayerOptions;
     }
     return listOfLayerOptions;
   }
 }
-
-
 export class ImageLayerFactory {
   static fromJSON(data: Record<string, unknown>): ImageLayer {
-    const itemToReturn = new ImageLayer('', 0);
+    const uid = data.uid as string;
+    const name = data.name as string;
+    const index = data.index as number;
+    const itemToReturn = new ImageLayer(name, index, uid);
     itemToReturn.name = data.name as string;
     itemToReturn.index = data.index as number;
-    itemToReturn.listOfOptions = itemToReturn.convertJSONToLayerOptions(data.listOfOptions as Record<string, unknown>[]);
+    itemToReturn.convertJSONToLayerOptions(data.listOfOptions as Record<string, unknown>[]);
     return itemToReturn;
   }
 }
