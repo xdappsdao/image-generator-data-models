@@ -3,7 +3,6 @@ import { ImageLayer, ImageLayerFactory } from "../image-layer/ImageLayer";
 export class Project {
   name = '';
   listOfLayers: ImageLayer[] = [];
-  numberOfLayers = 0;
   totalSupply = 0;
   uid = '';
   admin = "";
@@ -17,6 +16,7 @@ export class Project {
     }
     return listOfLayers;
   }
+
 }
 
 
@@ -38,7 +38,6 @@ export class ProjectFactory {
     itemToReturn.uid = data.uid;
     itemToReturn.description = data.description;
     itemToReturn.totalSupply = data.totalSupply;
-    itemToReturn.numberOfLayers = data.numberOfLayers;
     itemToReturn.admin = data.admin;
     itemToReturn.listOfLayers = itemToReturn.convertJSONToLayerObjects(data.listOfLayers);
     return itemToReturn;
