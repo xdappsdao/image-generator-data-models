@@ -14,7 +14,6 @@ export class PreMintProject {
   generatorTokenAnimationUrl = '';
   royaltyFactor = 0;
   generatorTokenCost = 3000;
-  projectTotalSupply = 0;
 
 
   convertJSONToLayerObjects(listOfJSONObjects: Record<string, unknown>[]): ImageLayer[] {
@@ -56,7 +55,6 @@ export class PreMintProjectFactory {
     itemToReturn.royaltyPaymentAddress = data.generatorAddress ? data.royaltyPaymentAddress : '';
     itemToReturn.royaltyFactor = data.royaltyFactor ? data.royaltyFactor : 0;
     itemToReturn.generatorTokenCost = data.generatorTokenCost ? data.generatorTokenCost : 0;
-    itemToReturn.projectTotalSupply = data.projectTotalSupply ? data.projectTotalSupply : 0;
     itemToReturn.listOfLayers = itemToReturn.convertJSONToLayerObjects(data.listOfLayers);
     return itemToReturn;
   }
