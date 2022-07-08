@@ -1,6 +1,6 @@
 {
   "name": "@xdappsdao/image-generator-data-models",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Basic NFT Functions",
   "main": "lib/index.js",
   "publishConfig": {

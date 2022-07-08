@@ -1,6 +1,6 @@
 import { ImageLayer, ImageLayerFactory } from "../image-layer/ImageLayer";
 import * as admin from "firebase-admin";
-export class Project {
+export class PreMintProject {
   name = '';
   listOfLayers: ImageLayer[] = [];
   totalSupply = 0;
@@ -8,11 +8,15 @@ export class Project {
   admin = "";
   description = "";
   chainId: number;
-  contractAddress: string;
   creatorAddress: string;
-  generatorAddress: string;
-  generatorTokenId: number;
-  
+  generatorTokenName = "";
+  royaltyPaymentAddress = "";
+  generatorTokenImage = "";
+  generatorTokenAnimationUrl = '';
+  royaltyFactor = 0;
+  generatorTokenCost = 3000;
+  projectTotalSupply = 0;
+
 
   convertJSONToLayerObjects(listOfJSONObjects: Record<string, unknown>[]): ImageLayer[] {
     const listOfLayers: ImageLayer[] = [];
@@ -26,30 +30,34 @@ export class Project {
 }
 
 
-export class ProjectFactory {
-  static listFromFirebase(results: any[]): Project[] {
-    const listToReturn: Project[] = [];
+export class PreMintProjectFactory {
+  static listFromFirebase(results: any[]): PreMintProject[] {
+    const listToReturn: PreMintProject[] = [];
     for (let i = 0; i < results.length; i++) {
       const doc = results[i];
-      const project = ProjectFactory.fromFBDoc(doc);
+      const project = PreMintProjectFactory.fromFBDoc(doc);
       listToReturn.push(project);
     }
     return listToReturn;
   }
 
-  static fromFBDoc(doc: any): Project {
+  static fromFBDoc(doc: any): PreMintProject {
     const data = doc.data();
-    const itemToReturn = new Project();
+    const itemToReturn = new PreMintProject();
     itemToReturn.name = data.name;
     itemToReturn.uid = data.uid;
     itemToReturn.description = data.description;
     itemToReturn.totalSupply = data.totalSupply;
     itemToReturn.admin = data.admin;
     itemToReturn.chainId = data.chainId ? data.chainId : 0;
-    itemToReturn.contractAddress = data.contractAddress ? data.contractAddress : '';
+    itemToReturn.generatorTokenName = data.generatorTokenName ? data.generatorTokenName : '';
+    itemToReturn.generatorTokenImage = data.generatorTokenImage ? data.generatorTokenImage : "";
     itemToReturn.creatorAddress = data.creatorAddress ? data.creatorAddress : "";
-    itemToReturn.generatorAddress = data.generatorAddress ? data.generatorAddress : '';
-    itemToReturn.generatorTokenId = data.generatorTokenId ? data.generatorTokenId : 0;
+    itemToReturn.generatorTokenAnimationUrl = data.generatorTokenAnimationUrl ? data.generatorTokenAnimationUrl : "";
+    itemToReturn.royaltyPaymentAddress = data.generatorAddress ? data.royaltyPaymentAddress : '';
+    itemToReturn.royaltyFactor = data.royaltyFactor ? data.royaltyFactor : 0;
+    itemToReturn.generatorTokenCost = data.generatorTokenCost ? data.generatorTokenCost : 0;
+    itemToReturn.projectTotalSupply = data.projectTotalSupply ? data.projectTotalSupply : 0;
     itemToReturn.listOfLayers = itemToReturn.convertJSONToLayerObjects(data.listOfLayers);
     return itemToReturn;
   }
