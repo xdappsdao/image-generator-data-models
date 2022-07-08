@@ -1,5 +1,4 @@
 import { ImageLayer, ImageLayerFactory } from "../image-layer/ImageLayer";
-import * as admin from "firebase-admin";
 export class PreMintProject {
   name = '';
   listOfLayers: ImageLayer[] = [];
